@@ -1,15 +1,38 @@
-## Put comments here that give an overall description of what your
-## functions do
+## A pair of functions that together can potentially save time on the costly operation of
+## inverting a matrix. They define an object that can store and retrieve both the original
+## and the inverted matrix, as well as another function that will make the calls to that
+## object appropriately.
 
-## Write a short comment describing this function
+## Object that can store and retrieve a matrix as well as its inverse.
+## If a new matrix is stored to it, then the cached inverse will be cleared.
 
 makeCacheMatrix <- function(x = matrix()) {
-
+        invMat <- NULL
+        set <- function(foo) {
+                x <<- foo
+                invMat <<- NULL
+        }
+        get <- function() x
+        setinverse <- function(bar) invMat <<- bar
+        getinverse <- function() invMat
+        list(set = set, get = get,
+             setinverse = setinverse,
+             getinverse = getinverse)
 }
 
 
-## Write a short comment describing this function
+## Try to get the cached inverse matrix from our object x.
+## If we can get it, then just return that result to x.
+## Otherwise, compute the inverted matrix and cache that result to x.
 
 cacheSolve <- function(x, ...) {
-        ## Return a matrix that is the inverse of 'x'
+        invMat <- x$getinverse()
+        if(!is.null(invMat)) {
+                message("Getting cached data.")
+                return(invMat)
+        }
+        data <- x$get()
+        invMat <- solve(data, ...)
+        x$setinverse(invMat)
+        invMat
 }
