@@ -2,6 +2,8 @@
 ## inverting a matrix. They define an object that can store and retrieve both the original
 ## and the inverted matrix, as well as another function that will make the calls to that
 ## object appropriately.
+## Functions are based on the ones in the example provided by Roger Peng,
+## with identifiers (and function call) adjusted appropriately.
 
 ## Object that can store and retrieve a matrix as well as its inverse.
 ## If a new matrix is stored to it, then the cached inverse will be cleared.
